@@ -1,24 +1,32 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect, useState } from "react";
+import "./App.css";
+import axios from "axios";
+import Map from "./Map";
+import { defData } from "./types";
 
 function App() {
+  const [defData, setDefData] = useState<defData[]>([]);
+  const apiKey = process.env.REACT_APP_PUBINFO_API_KEY;
+  const apiAddr = "https://api.odcloud.kr/api/uws/v1/inventory";
+  let page = 1;
+  let perPage = 10;
+  const query = `?page=${page}&perPage=${perPage}&returnType=JSON&serviceKey=${apiKey}`;
+  const url = apiAddr + query;
+
+  useEffect(() => {
+    axios
+      .get(url)
+      .then((res) => {
+        setDefData(res.data.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, [url]);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Map data={defData} />
     </div>
   );
 }
