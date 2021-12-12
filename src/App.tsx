@@ -13,8 +13,8 @@ declare global {
 
 function App() {
   const [defData, setDefData] = useState<defData[]>([]);
-  const [page, setPage] = useState<number>(0);
-  const [perPage, setPerPage] = useState<number>(800);
+  const page = 0;
+  const perPage = 800;
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const apiKey = process.env.REACT_APP_PUBINFO_API_KEY;
   const apiAddr = "https://api.odcloud.kr/api/uws/v1/inventory";

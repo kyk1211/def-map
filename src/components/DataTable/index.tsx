@@ -6,8 +6,9 @@ import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
 import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
-import TablePagination from "@mui/material/TablePagination";
+import Pagination from "@mui/material/Pagination";
 import TableRow from "@mui/material/TableRow";
+import { Stack } from "@mui/material";
 
 interface Props {
   data: defData[];
@@ -15,10 +16,11 @@ interface Props {
 
 function DataTable({ data }: Props) {
   const rowsPerPage = 10;
-  const [page, setPage] = useState(0);
+  const [page, setPage] = useState(1);
   const handleChangePage = (e: unknown, newPage: number) => {
     setPage(newPage);
   };
+  const dataCount = data.length;
 
   return (
     <Paper sx={{ width: "100%", overflow: "hidden" }}>
@@ -50,6 +52,13 @@ function DataTable({ data }: Props) {
           </TableBody>
         </Table>
       </TableContainer>
+      <Stack spacing={1}>
+        <Pagination
+          count={Math.floor(dataCount / rowsPerPage)}
+          shape="rounded"
+          onChange={handleChangePage}
+        />
+      </Stack>
     </Paper>
   );
 }
