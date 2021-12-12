@@ -16,7 +16,7 @@ interface Props {
 
 function DataTable({ data }: Props) {
   const rowsPerPage = 10;
-  const [page, setPage] = useState(1);
+  const [page, setPage] = useState(0);
   const handleChangePage = (e: unknown, newPage: number) => {
     setPage(newPage);
   };
@@ -28,10 +28,11 @@ function DataTable({ data }: Props) {
         <Table stickyHeader aria-label="sticky table">
           <TableHead>
             <TableRow>
-              <TableCell align="center">주유소 이름</TableCell>
+              <TableCell align="center">이름</TableCell>
               <TableCell align="center">주소</TableCell>
-              <TableCell align="center">재고량</TableCell>
-              <TableCell align="center">가격</TableCell>
+              <TableCell align="center">영업시간</TableCell>
+              <TableCell align="center">재고량(리터)</TableCell>
+              <TableCell align="center">가격(리터당)</TableCell>
               <TableCell align="center">전화번호</TableCell>
               <TableCell align="center">업데이트 일시</TableCell>
             </TableRow>
@@ -43,6 +44,9 @@ function DataTable({ data }: Props) {
                 <TableRow key={item.code}>
                   <TableCell>{item.name}</TableCell>
                   <TableCell>{item.addr}</TableCell>
+                  <TableCell align="center">
+                    {item.openTime || "정보없음"}
+                  </TableCell>
                   <TableCell>{item.inventory}</TableCell>
                   <TableCell>{item.price}</TableCell>
                   <TableCell>{item.tel}</TableCell>

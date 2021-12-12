@@ -21,7 +21,7 @@ function Map({ data }: Props) {
     <div
       className="MapContainer"
       ref={ref}
-      style={{ width: "500px", height: "400px" }}
+      style={{ width: "500px", height: "500px" }}
     ></div>
   );
 }

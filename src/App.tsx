@@ -37,10 +37,13 @@ function App() {
   return (
     <>
       {isLoading ? null : (
-        <div className="App">
-          <Map data={defData} />
-          <DataTable data={defData} />
-        </div>
+        <>
+          <header>hi</header>
+          <div className="App">
+            <Map data={defData} />
+            <DataTable data={defData} />
+          </div>
+        </>
       )}
     </>
   );
