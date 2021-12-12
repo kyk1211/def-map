@@ -14,17 +14,20 @@ declare global {
 function App() {
   const [defData, setDefData] = useState<defData[]>([]);
   const [page, setPage] = useState<number>(0);
-  const [perPage, setPerPage] = useState<number>(10);
+  const [perPage, setPerPage] = useState<number>(800);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
   const apiKey = process.env.REACT_APP_PUBINFO_API_KEY;
   const apiAddr = "https://api.odcloud.kr/api/uws/v1/inventory";
   const query = `?page=${page}&perPage=${perPage}&returnType=JSON&serviceKey=${apiKey}`;
   const url = apiAddr + query;
 
   useEffect(() => {
+    setIsLoading(true);
     axios
       .get(url)
       .then((res) => {
         setDefData(res.data.data);
+        setIsLoading(false);
       })
       .catch((err) => {
         console.log(err);
@@ -32,15 +35,14 @@ function App() {
   }, [url]);
 
   return (
-    <div className="App">
-      <Map data={defData} />
-      <DataTable
-        data={defData}
-        page={page}
-        setPage={setPage}
-        perPage={perPage}
-      />
-    </div>
+    <>
+      {isLoading ? null : (
+        <div className="App">
+          <Map data={defData} />
+          <DataTable data={defData} />
+        </div>
+      )}
+    </>
   );
 }
 
