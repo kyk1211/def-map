@@ -1,8 +1,14 @@
 import React, { useEffect, useState } from "react";
 import "./App.css";
 import axios from "axios";
-import Map from "./Map";
-import { defData } from "./types";
+import Map from "./components/Map";
+import { defData } from "./types/types";
+
+declare global {
+  interface Window {
+    kakao: any;
+  }
+}
 
 function App() {
   const [defData, setDefData] = useState<defData[]>([]);
