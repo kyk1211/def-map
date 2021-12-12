@@ -1,5 +1,5 @@
 /* global kakao */
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import { defData } from "../../types/types";
 
 interface Props {
@@ -7,23 +7,20 @@ interface Props {
 }
 
 function Map({ data }: Props) {
-  useEffect(() => {
-    let container = document.getElementById("map");
+  const ref = useRef(null);
 
+  useEffect(() => {
     let options = {
       center: new window.kakao.maps.LatLng(35.85133, 127.734086),
       level: 13,
     };
-
-    let map = new window.kakao.maps.Map(container, options);
-
-    console.log("loading kakaomap");
+    let map = new window.kakao.maps.Map(ref.current, options);
   }, []);
 
   return (
     <div
       className="MapContainer"
-      id="map"
+      ref={ref}
       style={{ width: "500px", height: "400px" }}
     ></div>
   );
