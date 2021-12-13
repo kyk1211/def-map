@@ -9,6 +9,7 @@ import TableHead from "@mui/material/TableHead";
 import Pagination from "@mui/material/Pagination";
 import TableRow from "@mui/material/TableRow";
 import { Stack } from "@mui/material";
+import './index.css'
 
 interface Props {
   data: defData[];
@@ -37,7 +38,7 @@ function DataTable({ data }: Props) {
               <TableCell align="center">업데이트 일시</TableCell>
             </TableRow>
           </TableHead>
-          <TableBody>
+          <TableBody style={{height: '500px'}}>
             {data
               .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
               .map((item) => (
