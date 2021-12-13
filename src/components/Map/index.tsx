@@ -15,6 +15,13 @@ function Map({ data }: Props) {
       level: 13,
     };
     let map = new window.kakao.maps.Map(ref.current, options);
+    data.forEach((item) => {
+      const coords = new window.kakao.maps.LatLng(item.lat, item.lng);
+      const marker = new window.kakao.maps.Marker({
+        map: map,
+        position: coords,
+      });
+    });
   }, []);
 
   return (
