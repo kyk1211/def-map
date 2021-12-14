@@ -63,7 +63,7 @@ function DataTable({ data }: Props) {
       </TableContainer>
       <Stack spacing={1}>
         <Pagination
-          count={Math.floor(dataCount / rowsPerPage)}
+          count={Math.ceil(dataCount / rowsPerPage) - 1}
           shape="rounded"
           onChange={handleChangePage}
         />

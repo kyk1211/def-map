@@ -51,13 +51,12 @@ function App() {
     <>
       {isLoading || (
         <>
-          <header>hi</header>
-          <div className="App">
+          <header>
+            <SearchBar setSearch={setSearch} />
+          </header>
+          <div className="content">
             <Map data={searchedData || defData} />
-            <div>
-              <SearchBar setSearch={setSearch} />
-              <DataTable data={searchedData || defData} />
-            </div>
+            <DataTable data={searchedData || defData} />
           </div>
         </>
       )}

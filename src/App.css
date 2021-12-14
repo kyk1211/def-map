@@ -1,5 +1,4 @@
-.App {
+.content {
   display: flex;
-  text-align: center;
-  gap: 3em;
+  gap: 3px;
 }
