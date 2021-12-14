@@ -4,10 +4,9 @@ import { defData } from '../../types/types';
 
 interface Props {
   data: defData[];
-  searchedData: defData[];
 }
 
-function Map({ data, searchedData }: Props) {
+function Map({ data }: Props) {
   const ref = useRef(null);
 
   useEffect(() => {
@@ -16,26 +15,16 @@ function Map({ data, searchedData }: Props) {
       level: 13,
     };
     const map = new window.kakao.maps.Map(ref.current, options);
-    if (searchedData) {
-      searchedData.forEach((item) => {
-        const coords = new window.kakao.maps.LatLng(item.lat, item.lng);
-        const marker = new window.kakao.maps.Marker({
-          map: map,
-          position: coords,
-          clickable: true,
-        });
+
+    data.forEach((item) => {
+      const coords = new window.kakao.maps.LatLng(item.lat, item.lng);
+      const marker = new window.kakao.maps.Marker({
+        map: map,
+        position: coords,
+        clickable: true,
       });
-    } else {
-      data.forEach((item) => {
-        const coords = new window.kakao.maps.LatLng(item.lat, item.lng);
-        const marker = new window.kakao.maps.Marker({
-          map: map,
-          position: coords,
-          clickable: true,
-        });
-      });
-    }
-  }, []);
+    });
+  }, [data]);
 
   return (
     <div

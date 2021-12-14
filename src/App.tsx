@@ -45,18 +45,18 @@ function App() {
       }
     }
     setSearchedData(data);
-  }, [search]);
+  }, [defData, search]);
 
   return (
     <>
-      {isLoading ? null : (
+      {isLoading || (
         <>
           <header>hi</header>
           <div className="App">
-            <Map data={defData} searchedData={searchedData} />
+            <Map data={searchedData || defData} />
             <div>
               <SearchBar setSearch={setSearch} />
-              <DataTable data={defData} searchedData={searchedData} />
+              <DataTable data={searchedData || defData} />
             </div>
           </div>
         </>
