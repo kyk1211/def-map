@@ -4,6 +4,7 @@ import axios from "axios";
 import Map from "./components/Map";
 import { defData } from "./types/types";
 import DataTable from "./components/DataTable";
+import SearchBar from './components/SearchBar';
 
 declare global {
   interface Window {
@@ -13,6 +14,7 @@ declare global {
 
 function App() {
   const [defData, setDefData] = useState<defData[]>([]);
+  const [seach, setSearch] = useState('');
   const page = 0;
   const perPage = 800;
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -41,7 +43,10 @@ function App() {
           <header>hi</header>
           <div className="App">
             <Map data={defData} />
-            <DataTable data={defData} />
+            <div>
+              <SearchBar setSearch={setSearch} />
+              <DataTable data={defData} />
+            </div>
           </div>
         </>
       )}
