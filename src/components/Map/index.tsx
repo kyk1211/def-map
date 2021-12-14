@@ -1,12 +1,13 @@
 /* global kakao */
-import React, { useEffect, useRef } from "react";
-import { defData } from "../../types/types";
+import React, { useEffect, useRef } from 'react';
+import { defData } from '../../types/types';
 
 interface Props {
   data: defData[];
+  searchedData: defData[];
 }
 
-function Map({ data }: Props) {
+function Map({ data, searchedData }: Props) {
   const ref = useRef(null);
 
   useEffect(() => {
@@ -15,21 +16,32 @@ function Map({ data }: Props) {
       level: 13,
     };
     const map = new window.kakao.maps.Map(ref.current, options);
-    data.forEach((item) => {
-      const coords = new window.kakao.maps.LatLng(item.lat, item.lng);
-      const marker = new window.kakao.maps.Marker({
-        map: map,
-        position: coords,
-        clickable: true
+    if (searchedData) {
+      searchedData.forEach((item) => {
+        const coords = new window.kakao.maps.LatLng(item.lat, item.lng);
+        const marker = new window.kakao.maps.Marker({
+          map: map,
+          position: coords,
+          clickable: true,
+        });
       });
-    });
+    } else {
+      data.forEach((item) => {
+        const coords = new window.kakao.maps.LatLng(item.lat, item.lng);
+        const marker = new window.kakao.maps.Marker({
+          map: map,
+          position: coords,
+          clickable: true,
+        });
+      });
+    }
   }, []);
 
   return (
     <div
       className="MapContainer"
       ref={ref}
-      style={{ width: "700px", height: "500px" }}
+      style={{ width: '700px', height: '500px' }}
     ></div>
   );
 }

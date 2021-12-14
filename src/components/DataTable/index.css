@@ -1,8 +1,8 @@
 .MuiPagination-ul {
-    justify-content: center;
+  justify-content: center;
 }
 
 .MuiPagination-root {
-    position: relative;
-    top: 15px;
+  position: relative;
+  top: 15px;
 }
