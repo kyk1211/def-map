@@ -9,7 +9,7 @@ import TableHead from '@mui/material/TableHead';
 import Pagination from '@mui/material/Pagination';
 import TableRow from '@mui/material/TableRow';
 import { Stack } from '@mui/material';
-import './index.css';
+import './styles.css';
 
 interface Props {
   data: defData[];
@@ -28,7 +28,7 @@ function DataTable({ data }: Props) {
   }, [data]);
 
   return (
-    <Paper sx={{ width: '100%', overflow: 'hidden' }}>
+    <Paper sx={{ overflow: 'hidden' }}>
       <TableContainer sx={{ maxHeight: 440 }}>
         <Table stickyHeader aria-label="sticky table">
           <TableHead>

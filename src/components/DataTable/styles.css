@@ -1,5 +1,6 @@
 .MuiPaper-root {
   text-align: center;
+  width: 100%;
 }
 .MuiPagination-ul {
   justify-content: center;

@@ -9,5 +9,5 @@ export interface defData {
   price: string;
   regDt: string;
   tel: string;
-  color: string;
+  color: 'Yellow' | 'Red' | 'Gray' | 'Green';
 }

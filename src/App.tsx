@@ -49,11 +49,16 @@ function App() {
 
   return (
     <>
-      {isLoading || (
+      <header>
+        <p className="logo" onClick={() => window.location.reload()}>
+          logo
+        </p>
+        <SearchBar setSearch={setSearch} />
+      </header>
+      {isLoading ? (
+        <p>loading</p>
+      ) : (
         <>
-          <header>
-            <SearchBar setSearch={setSearch} />
-          </header>
           <div className="content">
             <Map data={searchedData || defData} />
             <DataTable data={searchedData || defData} />

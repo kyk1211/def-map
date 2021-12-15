@@ -1,4 +1,18 @@
 .content {
   display: flex;
+  text-align: center;
   gap: 3px;
+  flex-wrap: wrap;
+  flex-direction: row;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+header .logo {
+  cursor: pointer;
 }

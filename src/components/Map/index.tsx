@@ -5,6 +5,7 @@ import grayMarker from '../../img/gray-marker.png';
 import redMarker from '../../img/red-marker.png';
 import yellowMarker from '../../img/yellow-marker.png';
 import greenMarker from '../../img/green-marker.png';
+import './styles.css';
 
 interface Props {
   data: defData[];
@@ -49,13 +50,7 @@ function Map({ data }: Props) {
     });
   }, [data]);
 
-  return (
-    <div
-      className="MapContainer"
-      ref={ref}
-      style={{ width: '700px', height: '500px' }}
-    ></div>
-  );
+  return <div className="MapContainer" ref={ref}></div>;
 }
 
 export default Map;

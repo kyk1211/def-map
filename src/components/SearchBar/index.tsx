@@ -29,7 +29,7 @@ function SearchBar({ setSearch }: Props) {
   };
 
   return (
-    <>
+    <div>
       <form onSubmit={handleSubmit} style={{ display: 'inline-flex' }}>
         <p>주소 검색</p>
         <input onChange={handleChange} value={text} placeholder="검색" />
@@ -45,7 +45,7 @@ function SearchBar({ setSearch }: Props) {
       >
         초기화
       </button>
-    </>
+    </div>
   );
 }
 
