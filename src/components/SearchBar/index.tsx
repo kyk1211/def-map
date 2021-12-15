@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import SearchIcon from '@mui/icons-material/Search';
 
 interface Props {
@@ -7,26 +7,32 @@ interface Props {
 
 function SearchBar({ setSearch }: Props) {
   const [text, setText] = useState('');
-  const validateText = () => {
+  const validateText = useCallback(() => {
     if (!text) {
       alert('검색어를 입력해주세요.');
     } else if (text.trim().length < 2) {
       alert('최소 2글자 이상 필요합니다.');
     }
-  };
+  }, [text]);
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    validateText();
-    if (text.trim().length >= 2) {
-      setSearch(text);
-      setText('');
-    }
-  };
+  const handleSubmit = useCallback(
+    (e: React.FormEvent<HTMLFormElement>) => {
+      e.preventDefault();
+      validateText();
+      if (text.trim().length >= 2) {
+        setSearch(text);
+        setText('');
+      }
+    },
+    [text, setSearch, setText, validateText]
+  );
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setText(e.target.value);
-  };
+  const handleChange = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      setText(e.target.value);
+    },
+    [setText]
+  );
 
   return (
     <div>

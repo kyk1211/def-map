@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { defData } from '../../types/types';
 import Paper from '@mui/material/Paper';
 import Table from '@mui/material/Table';
@@ -18,9 +18,12 @@ interface Props {
 function DataTable({ data }: Props) {
   const rowsPerPage = 10;
   const [page, setPage] = useState(0);
-  const handleChangePage = (e: unknown, newPage: number) => {
-    setPage(newPage);
-  };
+  const handleChangePage = useCallback(
+    (e: unknown, newPage: number) => {
+      setPage(newPage);
+    },
+    [setPage]
+  );
   const dataCount = data.length;
 
   useEffect(() => {

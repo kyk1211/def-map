@@ -1,5 +1,5 @@
 /* global kakao */
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { defData } from '../../types/types';
 import grayMarker from '../../img/gray-marker.png';
 import redMarker from '../../img/red-marker.png';
@@ -13,6 +13,7 @@ interface Props {
 
 function Map({ data }: Props) {
   const ref = useRef(null);
+  const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
     const options = {
@@ -41,11 +42,17 @@ function Map({ data }: Props) {
       const marker = new window.kakao.maps.Marker({
         map: map,
         position: coords,
-        clickable: true,
         image: new window.kakao.maps.MarkerImage(
           markerImg,
           new window.kakao.maps.Size(35, 35)
         ),
+      });
+      const infoWindow = new window.kakao.maps.InfoWindow({
+        content: item.name,
+        removable: true,
+      });
+      window.kakao.maps.event.addListener(marker, 'click', () => {
+        infoWindow.open(map, marker);
       });
     });
   }, [data]);
