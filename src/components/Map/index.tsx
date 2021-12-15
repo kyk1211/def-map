@@ -13,7 +13,7 @@ interface Props {
 
 function Map({ data }: Props) {
   const ref = useRef(null);
-  const [isOpen, setIsOpen] = useState(false);
+  const markers: any[] = [];
 
   useEffect(() => {
     const options = {
@@ -51,7 +51,11 @@ function Map({ data }: Props) {
         content: item.name,
         removable: true,
       });
+      markers.push([marker, infoWindow]);
       window.kakao.maps.event.addListener(marker, 'click', () => {
+        for (const i of markers) {
+          i[1].close();
+        }
         infoWindow.open(map, marker);
       });
     });
