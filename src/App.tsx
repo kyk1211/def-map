@@ -30,11 +30,12 @@ function App() {
       .get(url)
       .then((res) => {
         setDefData(res.data.data);
+        setIsLoading(false);
       })
       .catch((err) => {
         console.log(err);
+        setIsLoading(false);
       });
-    setIsLoading(false);
   }, [url]);
 
   useEffect(() => {
