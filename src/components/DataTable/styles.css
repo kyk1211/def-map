@@ -1,7 +1,13 @@
 .MuiPaper-root {
   text-align: center;
-  width: 100%;
+  min-width: 500px;
+  width: 60vw;
 }
 .MuiPagination-ul {
   justify-content: center;
+}
+@media screen and (max-width: 1024px) {
+  .MuiPaper-root {
+    width: 100vw;
+  }
 }
