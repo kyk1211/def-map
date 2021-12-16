@@ -44,26 +44,16 @@ function DataTable({ data, setDefData, setSearchedData, search }: Props) {
   }, [sortKey, search]);
 
   return (
-    <Paper sx={{ overflow: 'hidden' }}>
-      <TableContainer sx={{ maxHeight: 440 }}>
-        <Table stickyHeader aria-label="sticky table">
-          <TableHead>
-            <TableRow>
-              <TableCell align="center">이름</TableCell>
-              <TableCell align="center">주소</TableCell>
-              <TableCell align="center">영업시간</TableCell>
-              <TableCell align="center" onClick={() => setSortKey('inventory')}>
-                재고량(리터)
-              </TableCell>
-              <TableCell align="center" onClick={() => setSortKey('price')}>
-                가격(리터당)
-              </TableCell>
-              <TableCell align="center">전화번호</TableCell>
-              <TableCell align="center" onClick={() => setSortKey('regDt')}>
-                업데이트 일시
-              </TableCell>
-            </TableRow>
-          </TableHead>
+    <div>
+      <div className="table-container">
+        <table>
+          <th>이름</th>
+          <th>주소</th>
+          <th>운영시간</th>
+          <th>재고량(리터)</th>
+          <th>가격(리터당)</th>
+          <th>전화번호</th>
+          <th>수정일자</th>
           <TableBody style={{ height: '500px' }}>
             {data
               .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
@@ -81,8 +71,8 @@ function DataTable({ data, setDefData, setSearchedData, search }: Props) {
                 </TableRow>
               ))}
           </TableBody>
-        </Table>
-      </TableContainer>
+        </table>
+      </div>
       <Stack spacing={1}>
         <Pagination
           count={Math.ceil(dataCount / rowsPerPage) - 1}
@@ -90,7 +80,7 @@ function DataTable({ data, setDefData, setSearchedData, search }: Props) {
           onChange={handleChangePage}
         />
       </Stack>
-    </Paper>
+    </div>
   );
 }
 
