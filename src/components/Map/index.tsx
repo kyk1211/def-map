@@ -42,10 +42,7 @@ function Map({ data }: Props) {
       const marker = new window.kakao.maps.Marker({
         map: map,
         position: coords,
-        image: new window.kakao.maps.MarkerImage(
-          markerImg,
-          new window.kakao.maps.Size(35, 35)
-        ),
+        image: new window.kakao.maps.MarkerImage(markerImg, new window.kakao.maps.Size(35, 35)),
       });
       const infoWindow = new window.kakao.maps.InfoWindow({
         content: item.name,
