@@ -1,14 +1,5 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { defData } from '../../types/types';
-import Paper from '@mui/material/Paper';
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
-import Pagination from '@mui/material/Pagination';
-import TableRow from '@mui/material/TableRow';
-import { Stack } from '@mui/material';
 import sorter from '../../utils/sorter';
 import './styles.css';
 
@@ -22,13 +13,8 @@ interface Props {
 function DataTable({ data, setDefData, setSearchedData, search }: Props) {
   const rowsPerPage = 10;
   const [sortKey, setSortKey] = useState<keyof defData | ''>('');
-  const [page, setPage] = useState(0);
-  const handleChangePage = useCallback(
-    (e: React.ChangeEvent<unknown>, newPage: number) => {
-      setPage(newPage);
-    },
-    [setPage]
-  );
+  const [page, setPage] = useState(1);
+  const [pageNum, setPageNum] = useState<{ [key: number]: number[] }>({});
   const dataCount = data.length;
 
   useEffect(() => {
@@ -44,42 +30,47 @@ function DataTable({ data, setDefData, setSearchedData, search }: Props) {
   }, [sortKey, search]);
 
   return (
-    <div>
+    <div className="table">
       <div className="table-container">
         <table>
-          <th>이름</th>
-          <th>주소</th>
-          <th>운영시간</th>
-          <th>재고량(리터)</th>
-          <th>가격(리터당)</th>
-          <th>전화번호</th>
-          <th>수정일자</th>
-          <TableBody style={{ height: '500px' }}>
+          <thead>
+            <tr>
+              <th>이름</th>
+              <th>주소</th>
+              <th>운영시간</th>
+              <th onClick={() => setSortKey('inventory')}>재고량(리터)</th>
+              <th onClick={() => setSortKey('price')}>가격(리터당)</th>
+              <th>전화번호</th>
+              <th onClick={() => setSortKey('regDt')}>수정일자</th>
+            </tr>
+          </thead>
+          <tbody>
             {data
-              .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+              .slice(
+                (page - 1) * rowsPerPage,
+                (page - 1) * rowsPerPage + rowsPerPage
+              )
               .map((item) => (
-                <TableRow key={item.code}>
-                  <TableCell>{item.name || '정보없음'}</TableCell>
-                  <TableCell>{item.addr || '정보없음'}</TableCell>
-                  <TableCell align="center">
-                    {item.openTime || '정보없음'}
-                  </TableCell>
-                  <TableCell>{item.inventory || '정보없음'}</TableCell>
-                  <TableCell>{item.price || '정보없음'}</TableCell>
-                  <TableCell>{item.tel || '정보없음'}</TableCell>
-                  <TableCell>{item.regDt || '정보없음'}</TableCell>
-                </TableRow>
+                <tr key={item.code}>
+                  <td>{item.name || '정보없음'}</td>
+                  <td>{item.addr || '정보없음'}</td>
+                  <td align="center">{item.openTime || '정보없음'}</td>
+                  <td>{item.inventory || '정보없음'}</td>
+                  <td>{item.price || '정보없음'}</td>
+                  <td>{item.tel || '정보없음'}</td>
+                  <td>{item.regDt || '정보없음'}</td>
+                </tr>
               ))}
-          </TableBody>
+          </tbody>
         </table>
       </div>
-      <Stack spacing={1}>
-        <Pagination
-          count={Math.ceil(dataCount / rowsPerPage) - 1}
-          shape="rounded"
-          onChange={handleChangePage}
-        />
-      </Stack>
+      <ul className="pagination" style={{ listStyle: 'none' }}>
+        {/* {pageNum.map((item) => (
+          <li onClick={(e: any) => setPage(Number(e.target.innerText))}>
+            {item}
+          </li>
+        ))} */}
+      </ul>
     </div>
   );
 }
