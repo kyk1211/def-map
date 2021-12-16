@@ -59,12 +59,10 @@ function App() {
       {isLoading ? (
         <p>loading</p>
       ) : (
-        <>
-          <div className="content">
-            <Map data={searchedData || defData} />
-            <DataTable data={searchedData || defData} />
-          </div>
-        </>
+        <div className="content">
+          <Map data={searchedData || defData} />
+          <DataTable data={searchedData || defData} />
+        </div>
       )}
     </>
   );
