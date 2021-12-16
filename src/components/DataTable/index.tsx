@@ -15,10 +15,11 @@ import './styles.css';
 interface Props {
   data: defData[];
   setDefData: React.Dispatch<React.SetStateAction<defData[]>>;
+  setSearchedData: React.Dispatch<React.SetStateAction<defData[]>>;
   search: string;
 }
 
-function DataTable({ data, setDefData, search }: Props) {
+function DataTable({ data, setDefData, setSearchedData, search }: Props) {
   const rowsPerPage = 10;
   const [sortKey, setSortKey] = useState<keyof defData | ''>('');
   const [page, setPage] = useState(0);
@@ -34,7 +35,11 @@ function DataTable({ data, setDefData, search }: Props) {
     if (sortKey) {
       const target = [...data];
       sorter<defData>(target, sortKey);
-      setDefData(target);
+      if (search) {
+        setSearchedData(target);
+      } else {
+        setDefData(target);
+      }
     }
   }, [sortKey, search]);
 

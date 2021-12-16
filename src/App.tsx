@@ -64,6 +64,7 @@ function App() {
           <DataTable
             data={searchedData || defData}
             setDefData={setDefData}
+            setSearchedData={setSearchedData}
             search={search}
           />
         </div>
