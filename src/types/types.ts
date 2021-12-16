@@ -6,7 +6,7 @@ export interface defData {
   lng: string;
   name: string;
   openTime: string;
-  price: string;
+  price: string | null;
   regDt: string;
   tel: string;
   color: 'Yellow' | 'Red' | 'Gray' | 'Green';

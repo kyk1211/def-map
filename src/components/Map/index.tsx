@@ -1,5 +1,5 @@
 /* global kakao */
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { defData } from '../../types/types';
 import grayMarker from '../../img/gray-marker.png';
 import redMarker from '../../img/red-marker.png';

@@ -9,17 +9,21 @@ import TableHead from '@mui/material/TableHead';
 import Pagination from '@mui/material/Pagination';
 import TableRow from '@mui/material/TableRow';
 import { Stack } from '@mui/material';
+import sorter from '../../utils/sorter';
 import './styles.css';
 
 interface Props {
   data: defData[];
+  setDefData: React.Dispatch<React.SetStateAction<defData[]>>;
+  search: string;
 }
 
-function DataTable({ data }: Props) {
+function DataTable({ data, setDefData, search }: Props) {
   const rowsPerPage = 10;
+  const [sortKey, setSortKey] = useState<keyof defData | ''>('');
   const [page, setPage] = useState(0);
   const handleChangePage = useCallback(
-    (e: unknown, newPage: number) => {
+    (e: React.ChangeEvent<unknown>, newPage: number) => {
       setPage(newPage);
     },
     [setPage]
@@ -27,8 +31,12 @@ function DataTable({ data }: Props) {
   const dataCount = data.length;
 
   useEffect(() => {
-    setPage(0);
-  }, [data]);
+    if (sortKey) {
+      const target = [...data];
+      sorter<defData>(target, sortKey);
+      setDefData(target);
+    }
+  }, [sortKey, search]);
 
   return (
     <Paper sx={{ overflow: 'hidden' }}>
@@ -39,10 +47,16 @@ function DataTable({ data }: Props) {
               <TableCell align="center">이름</TableCell>
               <TableCell align="center">주소</TableCell>
               <TableCell align="center">영업시간</TableCell>
-              <TableCell align="center">재고량(리터)</TableCell>
-              <TableCell align="center">가격(리터당)</TableCell>
+              <TableCell align="center" onClick={() => setSortKey('inventory')}>
+                재고량(리터)
+              </TableCell>
+              <TableCell align="center" onClick={() => setSortKey('price')}>
+                가격(리터당)
+              </TableCell>
               <TableCell align="center">전화번호</TableCell>
-              <TableCell align="center">업데이트 일시</TableCell>
+              <TableCell align="center" onClick={() => setSortKey('regDt')}>
+                업데이트 일시
+              </TableCell>
             </TableRow>
           </TableHead>
           <TableBody style={{ height: '500px' }}>
@@ -50,15 +64,15 @@ function DataTable({ data }: Props) {
               .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
               .map((item) => (
                 <TableRow key={item.code}>
-                  <TableCell>{item.name}</TableCell>
-                  <TableCell>{item.addr}</TableCell>
+                  <TableCell>{item.name || '정보없음'}</TableCell>
+                  <TableCell>{item.addr || '정보없음'}</TableCell>
                   <TableCell align="center">
                     {item.openTime || '정보없음'}
                   </TableCell>
-                  <TableCell>{item.inventory}</TableCell>
-                  <TableCell>{item.price}</TableCell>
-                  <TableCell>{item.tel}</TableCell>
-                  <TableCell>{item.regDt}</TableCell>
+                  <TableCell>{item.inventory || '정보없음'}</TableCell>
+                  <TableCell>{item.price || '정보없음'}</TableCell>
+                  <TableCell>{item.tel || '정보없음'}</TableCell>
+                  <TableCell>{item.regDt || '정보없음'}</TableCell>
                 </TableRow>
               ))}
           </TableBody>

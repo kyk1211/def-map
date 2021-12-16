@@ -61,7 +61,11 @@ function App() {
       ) : (
         <div className="content">
           <Map data={searchedData || defData} />
-          <DataTable data={searchedData || defData} />
+          <DataTable
+            data={searchedData || defData}
+            setDefData={setDefData}
+            search={search}
+          />
         </div>
       )}
     </>
