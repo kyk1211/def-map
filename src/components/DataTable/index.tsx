@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { defData } from '../../types/types';
 import sorter from '../../utils/sorter';
 import './styles.css';
@@ -10,33 +10,46 @@ interface Props {
   search: string;
 }
 
-interface Page {
-  [key: number]: number[];
-}
-
 function DataTable({ data, setDefData, setSearchedData, search }: Props) {
   const rowsPerPage = 10;
   const [sortKey, setSortKey] = useState<keyof defData | ''>('');
   const [pageNum, setPageNum] = useState(1);
-  const [page, setPage] = useState<Page>({});
+  const [pageIdx, setPageIdx] = useState<number>(0);
+  const [page, setPage] = useState<number[][]>([]);
   const dataCount = data.length;
 
+  const handleLeftClick = () => {
+    if (pageNum === 1) return;
+    if (pageNum % 10 === 1) {
+      setPageIdx((prev) => prev - 1);
+    }
+    setPageNum((prev) => prev - 1);
+  };
+
+  const handleRightClick = () => {
+    if (pageNum === Math.ceil(dataCount / rowsPerPage)) return;
+    if (page[pageIdx][-1] === pageNum) {
+      setPageIdx((prev) => prev + 1);
+    }
+    setPageNum((prev) => prev + 1);
+  };
+
   useEffect(() => {
-    const pageObj: Page = {};
-    let count = 1;
     let arr = [];
-    for (let i = 1; i < Math.ceil(dataCount / rowsPerPage); i++) {
+    let sarr = [];
+    for (let i = 1; i <= Math.ceil(dataCount / rowsPerPage); i++) {
       arr.push(i);
       if (arr.length === 10) {
-        pageObj[count] = arr;
+        sarr.push(arr);
         arr = [];
-        count++;
-      } else if (i === Math.ceil(dataCount / rowsPerPage) - 1) {
-        pageObj[count] = arr;
+      } else if (i === Math.ceil(dataCount / rowsPerPage)) {
+        sarr.push(arr);
       }
     }
-    setPage(pageObj);
-  }, [dataCount, rowsPerPage]);
+    setPage(sarr);
+    console.log(`총 데이터: ${dataCount}건`);
+    console.log(sarr);
+  }, [rowsPerPage, dataCount]);
 
   useEffect(() => {
     setPageNum(1);
@@ -96,17 +109,17 @@ function DataTable({ data, setDefData, setSearchedData, search }: Props) {
           <button>&lt;&lt;</button>
         </li>
         <li>
-          <button onClick={() => setPageNum((prev) => (prev === 1 ? prev : prev - 1))}>&lt;</button>
+          <button onClick={() => handleLeftClick()}>&lt;</button>
         </li>
-        {/* {pageNum.map((item) => (
-          <li onClick={(e: any) => setPage(Number(e.target.innerText))}>
-            {item}
+        {page[pageIdx]?.map((item, idx) => (
+          <li key={idx}>
+            <button value={item} onClick={() => setPageNum(item)}>
+              {item}
+            </button>
           </li>
-        ))} */}
+        ))}
         <li>
-          <button onClick={() => setPageNum((prev) => (prev === Math.ceil(dataCount / rowsPerPage) ? prev : prev + 1))}>
-            &gt;
-          </button>
+          <button onClick={() => handleRightClick()}>&gt;</button>
         </li>
         <li>
           <button>&gt;&gt;</button>

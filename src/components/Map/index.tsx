@@ -9,9 +9,10 @@ import './styles.css';
 
 interface Props {
   data: defData[];
+  search: string;
 }
 
-function Map({ data }: Props) {
+function Map({ data, search }: Props) {
   const ref = useRef(null);
   const markers: any[] = [];
 
@@ -56,7 +57,7 @@ function Map({ data }: Props) {
         infoWindow.open(map, marker);
       });
     });
-  }, [data]);
+  }, [data, search]);
 
   return <div className="MapContainer" ref={ref}></div>;
 }

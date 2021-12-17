@@ -1,13 +1,17 @@
-.MuiPaper-root {
+.table {
   text-align: center;
   min-width: 500px;
   width: 60vw;
+  height: 100%;
+  background-color: aquamarine;
 }
-.MuiPagination-ul {
-  justify-content: center;
+
+.pagination {
+  background-color: burlywood;
 }
+
 @media screen and (max-width: 1024px) {
-  .MuiPaper-root {
+  .table {
     width: 100vw;
   }
 }
