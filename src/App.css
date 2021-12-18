@@ -4,14 +4,6 @@
   justify-content: space-around;
 }
 
-@media screen and (max-width: 1024px) {
-  .content {
-    display: flex;
-    text-align: center;
-    flex-direction: column;
-    justify-content: space-between;
-  }
-}
 header {
   display: flex;
   justify-content: space-between;
@@ -20,4 +12,13 @@ header {
 
 header .logo {
   cursor: pointer;
+}
+
+@media screen and (max-width: 1024px) {
+  .content {
+    display: flex;
+    text-align: center;
+    flex-direction: column;
+    justify-content: space-between;
+  }
 }
