@@ -22,6 +22,11 @@ function DataTable({ data }: Props) {
   }, [currentPage, tableData]);
 
   useEffect(() => {
+    setTableData([...data]);
+    setCurrentPage(1);
+  }, [data]);
+
+  useEffect(() => {
     setCurrentPage(1);
     if (sortKey) {
       const target = [...tableData];

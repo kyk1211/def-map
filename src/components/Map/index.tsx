@@ -5,14 +5,13 @@ import grayMarker from '../../img/gray-marker.png';
 import redMarker from '../../img/red-marker.png';
 import yellowMarker from '../../img/yellow-marker.png';
 import greenMarker from '../../img/green-marker.png';
-import './styles.css';
+import './styles.scss';
 
 interface Props {
   data: defData[];
-  search: string;
 }
 
-function Map({ data, search }: Props) {
+function Map({ data }: Props) {
   const ref = useRef(null);
   const markers: any[] = [];
 
@@ -43,7 +42,10 @@ function Map({ data, search }: Props) {
       const marker = new window.kakao.maps.Marker({
         map: map,
         position: coords,
-        image: new window.kakao.maps.MarkerImage(markerImg, new window.kakao.maps.Size(35, 35)),
+        image: new window.kakao.maps.MarkerImage(
+          markerImg,
+          new window.kakao.maps.Size(35, 35)
+        ),
       });
       const infoWindow = new window.kakao.maps.InfoWindow({
         content: item.name,
@@ -57,7 +59,7 @@ function Map({ data, search }: Props) {
         infoWindow.open(map, marker);
       });
     });
-  }, [data, search]);
+  }, [data]);
 
   return <div className="MapContainer" ref={ref}></div>;
 }

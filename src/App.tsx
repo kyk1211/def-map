@@ -4,7 +4,7 @@ import axios from 'axios';
 import Map from './components/Map';
 import { defData } from './types/types';
 import DataTable from './components/DataTable';
-import SearchBar from './components/SearchBar';
+import Header from './components/Header';
 
 declare global {
   interface Window {
@@ -50,21 +50,15 @@ function App() {
 
   return (
     <div className="project">
-      <header>
-        <div className="logo" onClick={() => window.location.reload()}>
-          <span>요소수 정보 서비스</span>
-        </div>
-        <SearchBar setSearch={setSearch} />
-      </header>
-      {/* {isLoading ? (
+      <Header setSearch={setSearch} />
+      {isLoading ? (
         <div className="loading">Loading...</div>
       ) : (
         <div className="content">
-          <Map data={searchedData || defData} search={search} />
+          <Map data={searchedData || defData} />
           <DataTable data={searchedData || defData} />
         </div>
-      )} */}
-      <div className="loading">Loading...</div>
+      )}
     </div>
   );
 }

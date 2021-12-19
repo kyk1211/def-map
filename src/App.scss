@@ -1,16 +1,7 @@
-header {
-  display: flex;
-  justify-content: space-between;
-  padding: 10px;
-  height: 50px;
-
-  .logo {
-    display: flex;
-    cursor: pointer;
-    border: 1px solid black;
-    padding: 5px;
-    align-items: center;
-  }
+html,
+body {
+  max-width: 100%;
+  overflow-x: hidden;
 }
 
 .loading {
@@ -22,9 +13,10 @@ header {
 
 .content {
   display: flex;
+  align-items: center;
+  justify-content: center;
   text-align: center;
-  justify-content: space-around;
-  height: 80%;
+  gap: 10px;
 }
 
 @media screen and (max-width: 1024px) {

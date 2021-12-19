@@ -6,7 +6,7 @@ interface Props {
   setSearch: React.Dispatch<React.SetStateAction<string>>;
 }
 
-function SearchBar({ setSearch }: Props) {
+function Header({ setSearch }: Props) {
   const [text, setText] = useState('');
   const validateText = useCallback(() => {
     if (!text) {
@@ -36,24 +36,29 @@ function SearchBar({ setSearch }: Props) {
   );
 
   return (
-    <div className="search-container">
-      <form onSubmit={handleSubmit} className="form">
-        <p>주소 검색</p>
-        <input onChange={handleChange} value={text} placeholder="검색" />
-        <button type="submit">
-          <SearchIcon />
+    <div className="header">
+      <div className="logo" onClick={() => window.location.reload()}>
+        <span>요소수 정보 서비스</span>
+      </div>
+      <div className="search-container">
+        <form onSubmit={handleSubmit}>
+          <span>주소 검색</span>
+          <input onChange={handleChange} value={text} placeholder="검색" />
+          <button type="submit">
+            <SearchIcon />
+          </button>
+        </form>
+        <button
+          onClick={() => {
+            setSearch('');
+            setText('');
+          }}
+        >
+          초기화
         </button>
-      </form>
-      <button
-        onClick={() => {
-          setSearch('');
-          setText('');
-        }}
-      >
-        초기화
-      </button>
+      </div>
     </div>
   );
 }
 
-export default SearchBar;
+export default Header;

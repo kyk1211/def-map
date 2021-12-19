@@ -1,5 +1,6 @@
 .data-table {
   width: 60%;
+  box-sizing: border-box;
 
   span {
     font-size: large;
@@ -8,10 +9,9 @@
 
   .table-container {
     table-layout: fixed;
-    overflow: scroll;
+    overflow-x: scroll;
 
     table {
-      width: 100%;
       white-space: nowrap;
       border-collapse: collapse;
       border: 3px solid black;
@@ -45,7 +45,6 @@
 
 @media screen and (max-width: 1024px) {
   .data-table {
-    width: 97vw;
-    margin: auto;
+    width: 98%;
   }
 }

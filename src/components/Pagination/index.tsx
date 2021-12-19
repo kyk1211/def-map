@@ -16,7 +16,7 @@ function Pagination({
   dataCount,
   rowsPerPage,
   currentPage,
-  siblingCount = 1,
+  siblingCount = 2,
   onPageChange,
   className,
 }: Props) {

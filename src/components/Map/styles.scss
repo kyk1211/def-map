@@ -1,10 +1,11 @@
 .MapContainer {
-  height: 500px;
-  width: 30vw;
+  width: 40%;
+  height: 550px;
 }
 
 @media screen and (max-width: 1024px) {
   .MapContainer {
+    position: static;
     width: 100vw;
   }
 }
