@@ -1,5 +1,6 @@
 import React, { useCallback, useState } from 'react';
 import SearchIcon from '@mui/icons-material/Search';
+import './styles.scss';
 
 interface Props {
   setSearch: React.Dispatch<React.SetStateAction<string>>;
@@ -35,12 +36,12 @@ function SearchBar({ setSearch }: Props) {
   );
 
   return (
-    <div>
-      <form onSubmit={handleSubmit} style={{ display: 'inline-flex' }}>
+    <div className="search-container">
+      <form onSubmit={handleSubmit} className="form">
         <p>주소 검색</p>
         <input onChange={handleChange} value={text} placeholder="검색" />
         <button type="submit">
-          <SearchIcon></SearchIcon>
+          <SearchIcon />
         </button>
       </form>
       <button

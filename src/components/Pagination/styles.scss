@@ -2,6 +2,7 @@
   display: flex;
   list-style-type: none;
   justify-content: center;
+  padding: 0;
 
   .pagination-item {
     padding: 0 12px;
@@ -34,9 +35,7 @@
     .arrow {
       &::before {
         position: relative;
-        /* top: 3pt; Uncomment this to lower the icons as requested in comments*/
         content: '';
-        /* By using an em scale, the arrows will size with the font */
         display: inline-block;
         width: 0.4em;
         height: 0.4em;

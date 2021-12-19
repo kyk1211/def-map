@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import './App.css';
+import './App.scss';
 import axios from 'axios';
 import Map from './components/Map';
 import { defData } from './types/types';
@@ -49,22 +49,23 @@ function App() {
   }, [defData, search]);
 
   return (
-    <>
+    <div className="project">
       <header>
-        <p className="logo" onClick={() => window.location.reload()}>
-          logo
-        </p>
+        <div className="logo" onClick={() => window.location.reload()}>
+          <span>요소수 정보 서비스</span>
+        </div>
         <SearchBar setSearch={setSearch} />
       </header>
-      {isLoading ? (
-        <p>loading</p>
+      {/* {isLoading ? (
+        <div className="loading">Loading...</div>
       ) : (
         <div className="content">
           <Map data={searchedData || defData} search={search} />
           <DataTable data={searchedData || defData} />
         </div>
-      )}
-    </>
+      )} */}
+      <div className="loading">Loading...</div>
+    </div>
   );
 }
 
