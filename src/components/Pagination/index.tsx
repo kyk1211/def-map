@@ -1,7 +1,7 @@
 import React from 'react';
 import { usePagination, DOTS } from '../../hooks/usePagination';
 import classnames from 'classnames';
-import './index.scss';
+import './styles.scss';
 
 interface Props {
   dataCount: number;

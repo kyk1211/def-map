@@ -1,0 +1,40 @@
+.table-container {
+  table-layout: fixed;
+  width: 60%;
+  border-collapse: collapse;
+  border: 3px solid purple;
+  overflow-x: scroll;
+
+  caption {
+    font-size: large;
+    font-weight: bolder;
+  }
+
+  thead {
+    th {
+      background-color: #249900;
+    }
+  }
+  tbody {
+    tr {
+      &:nth-child(odd) {
+        background-color: #3af700;
+      }
+      &:nth-child(even) {
+        background-color: #30cc00;
+      }
+    }
+  }
+
+  th,
+  td {
+    padding: 10px;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .table-container {
+    width: 97vw;
+    margin: auto;
+  }
+}
