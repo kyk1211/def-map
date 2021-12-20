@@ -1,5 +1,5 @@
 /* global kakao */
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { defData } from '../../types/types';
 import grayMarker from '../../img/gray-marker.png';
 import redMarker from '../../img/red-marker.png';
@@ -11,19 +11,21 @@ interface Props {
   data: defData[];
 }
 
+const { kakao } = window;
+
 function Map({ data }: Props) {
   const ref = useRef(null);
-  const markers: any[] = [];
+  const [markers, setMarkers] = useState<any[]>([]);
 
   useEffect(() => {
     const options = {
-      center: new window.kakao.maps.LatLng(35.85133, 127.734086),
+      center: new kakao.maps.LatLng(35.85133, 127.734086),
       level: 13,
     };
-    const map = new window.kakao.maps.Map(ref.current, options);
+    const map = new kakao.maps.Map(ref.current, options);
 
     data.forEach((item) => {
-      const coords = new window.kakao.maps.LatLng(item.lat, item.lng);
+      const coords = new kakao.maps.LatLng(item.lat, item.lng);
       const color = item.color.toLowerCase();
       let markerImg;
       switch (color) {
@@ -39,28 +41,17 @@ function Map({ data }: Props) {
         default:
           markerImg = greenMarker;
       }
-      const marker = new window.kakao.maps.Marker({
+      const marker = new kakao.maps.Marker({
         map: map,
         position: coords,
-        image: new window.kakao.maps.MarkerImage(
+        clickable: true,
+        image: new kakao.maps.MarkerImage(
           markerImg,
-          new window.kakao.maps.Size(35, 35)
+          new kakao.maps.Size(35, 35)
         ),
-      });
-      const infoWindow = new window.kakao.maps.InfoWindow({
-        content: item.name,
-        removable: true,
-      });
-      markers.push([marker, infoWindow]);
-      window.kakao.maps.event.addListener(marker, 'click', () => {
-        for (const i of markers) {
-          i[1].close();
-        }
-        infoWindow.open(map, marker);
       });
     });
   }, [data]);
-
   return <div className="MapContainer" ref={ref}></div>;
 }
 

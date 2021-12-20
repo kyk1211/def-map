@@ -49,7 +49,7 @@ function App() {
   }, [defData, search]);
 
   return (
-    <div className="project">
+    <>
       <Header setSearch={setSearch} />
       {isLoading ? (
         <div className="loading">Loading...</div>
@@ -59,7 +59,7 @@ function App() {
           <DataTable data={searchedData || defData} />
         </div>
       )}
-    </div>
+    </>
   );
 }
 
