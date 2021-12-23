@@ -1,6 +1,26 @@
 .MapContainer {
   width: 40%;
   height: 550px;
+  box-sizing: border-box;
+}
+
+.info {
+  background-color: white;
+  box-sizing: border-box;
+  border-radius: 10px;
+  box-shadow: 1px 1px 10px 1px #696969;
+  overflow: hidden;
+
+  .title {
+    text-align: left;
+    background-color: #bdbebf;
+    padding: 5px;
+    border-bottom: 1px solid #868687;
+    font-weight: bold;
+  }
+  .body {
+    padding: 5px;
+  }
 }
 
 @media screen and (max-width: 1024px) {

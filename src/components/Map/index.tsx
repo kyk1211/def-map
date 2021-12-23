@@ -15,7 +15,7 @@ const { kakao } = window;
 
 function Map({ data }: Props) {
   const ref = useRef(null);
-  const [markers, setMarkers] = useState<any[]>([]);
+  const markers: any[] = [];
 
   useEffect(() => {
     const options = {
@@ -49,6 +49,30 @@ function Map({ data }: Props) {
           markerImg,
           new kakao.maps.Size(35, 35)
         ),
+      });
+      const info = new kakao.maps.CustomOverlay({
+        clickable: true,
+        position: coords,
+        content:
+          '<div class="info">' +
+          '    <div class="title">' +
+          `        ${item.name}` +
+          '    </div>' +
+          '    <div class="body">' +
+          '        <div class="desc">' +
+          `          <div class="addr">${item.addr}</div>` +
+          `          <div class="inven">재고: ${item.inventory}L</div>` +
+          `          <div class="price">가격: ${item.price}원/L</div>` +
+          '        </div>' +
+          '    </div>' +
+          '</div>',
+      });
+      markers.push([marker, info]);
+      kakao.maps.event.addListener(marker, 'click', () => {
+        for (const i of markers) {
+          i[1].setMap(null);
+        }
+        info.setMap(map);
       });
     });
   }, [data]);

@@ -7,9 +7,10 @@ import './styles.scss';
 
 interface Props {
   data: defData[];
+  search: string;
 }
 
-function DataTable({ data }: Props) {
+function DataTable({ data, search }: Props) {
   const rowsPerPage = 10;
   const [tableData, setTableData] = useState([...data]);
   const [sortKey, setSortKey] = useState<keyof defData | ''>('');
@@ -25,6 +26,10 @@ function DataTable({ data }: Props) {
     setTableData([...data]);
     setCurrentPage(1);
   }, [data]);
+
+  useEffect(() => {
+    setSortKey('');
+  }, [search]);
 
   useEffect(() => {
     setCurrentPage(1);

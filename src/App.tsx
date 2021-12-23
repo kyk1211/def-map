@@ -51,14 +51,16 @@ function App() {
   return (
     <>
       <Header setSearch={setSearch} />
-      {isLoading ? (
-        <div className="loading">Loading...</div>
-      ) : (
-        <div className="content">
-          <Map data={searchedData || defData} />
-          <DataTable data={searchedData || defData} />
-        </div>
-      )}
+      <div className="content">
+        {isLoading ? (
+          <div className="loading">Loading...</div>
+        ) : (
+          <>
+            <Map data={searchedData || defData} />
+            <DataTable data={searchedData || defData} search={search} />
+          </>
+        )}
+      </div>
     </>
   );
 }
