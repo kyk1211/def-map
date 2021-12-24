@@ -10,16 +10,26 @@
   border-radius: 10px;
   box-shadow: 1px 1px 10px 1px #696969;
   overflow: hidden;
+  cursor: default;
 
-  .title {
-    text-align: left;
+  .head {
     background-color: #bdbebf;
     padding: 5px;
     border-bottom: 1px solid #868687;
-    font-weight: bold;
+    display: flex;
+    justify-content: space-between;
+    .title {
+      text-align: left;
+      font-weight: bold;
+    }
+    button {
+      cursor: pointer;
+    }
   }
+
   .body {
     padding: 5px;
+    text-align: left;
   }
 }
 

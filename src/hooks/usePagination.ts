@@ -20,7 +20,7 @@ export const usePagination = ({
   currentPage,
   siblingCount: siblingCount = 1,
 }: Props) => {
-  const paginationRange: (string | number)[] = useMemo(() => {
+  const paginationRange: (typeof DOTS | number)[] = useMemo(() => {
     const totalPageCount = Math.ceil(dataCount / rowsPerPage);
     const totalPageNumbers = siblingCount + 5;
 

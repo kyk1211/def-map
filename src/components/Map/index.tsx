@@ -1,5 +1,5 @@
 /* global kakao */
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { defData } from '../../types/types';
 import grayMarker from '../../img/gray-marker.png';
 import redMarker from '../../img/red-marker.png';
@@ -50,29 +50,38 @@ function Map({ data }: Props) {
           new kakao.maps.Size(35, 35)
         ),
       });
-      const info = new kakao.maps.CustomOverlay({
+      // 커스텀 인포윈도우 생성
+      let content =
+        '<div class="info">' +
+        `    <div class='head'>` +
+        '       <div class="title">' +
+        `           ${item.name}` +
+        '       </div>' +
+        `       <button class="closeBtn">&times;</button>` +
+        '    </div>' +
+        '    <div class="body">' +
+        '        <div class="desc">' +
+        `          <div class="addr">${item.addr}</div>` +
+        `          <div class="inven">재고: ${item.inventory}L</div>` +
+        `          <div class="price">가격: ${item.price}원/L</div>` +
+        `          <div>전화번호: ${item.tel}</div>` +
+        `          <div>수정일자: ${item.regDt}</div>` +
+        '        </div>' +
+        '    </div>' +
+        '</div>';
+
+      const overlay = new kakao.maps.CustomOverlay({
         clickable: true,
         position: coords,
-        content:
-          '<div class="info">' +
-          '    <div class="title">' +
-          `        ${item.name}` +
-          '    </div>' +
-          '    <div class="body">' +
-          '        <div class="desc">' +
-          `          <div class="addr">${item.addr}</div>` +
-          `          <div class="inven">재고: ${item.inventory}L</div>` +
-          `          <div class="price">가격: ${item.price}원/L</div>` +
-          '        </div>' +
-          '    </div>' +
-          '</div>',
+        yAnchor: 1.25,
+        content: content,
       });
-      markers.push([marker, info]);
+      markers.push([marker, overlay]);
       kakao.maps.event.addListener(marker, 'click', () => {
         for (const i of markers) {
           i[1].setMap(null);
         }
-        info.setMap(map);
+        overlay.setMap(map);
       });
     });
   }, [data]);

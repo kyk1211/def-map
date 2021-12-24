@@ -28,8 +28,13 @@
         border: 1px solid black;
       }
 
-      thead th {
-        background-color: #249900;
+      thead {
+        th {
+          background-color: #249900;
+        }
+        .cc {
+          cursor: pointer;
+        }
       }
 
       tbody {

@@ -1,5 +1,4 @@
 import React, { useEffect, useMemo, useState } from 'react';
-import Scrollbars from 'react-custom-scrollbars-2';
 import { defData } from '../../types/types';
 import sorter from '../../utils/sorter';
 import Pagination from '../Pagination';
@@ -13,8 +12,9 @@ interface Props {
 function DataTable({ data, search }: Props) {
   const rowsPerPage = 10;
   const [tableData, setTableData] = useState([...data]);
-  const [sortKey, setSortKey] = useState<keyof defData | ''>('');
   const [currentPage, setCurrentPage] = useState(1);
+  const [sortKey, setSortKey] = useState<keyof defData | ''>('');
+  const [reverse, setReverse] = useState(false);
 
   const currentTableData = useMemo(() => {
     const firstPageIndex = (currentPage - 1) * rowsPerPage;
@@ -25,20 +25,26 @@ function DataTable({ data, search }: Props) {
   useEffect(() => {
     setTableData([...data]);
     setCurrentPage(1);
+    setReverse(false);
   }, [data]);
 
   useEffect(() => {
     setSortKey('');
+    setReverse(false);
   }, [search]);
+
+  useEffect(() => {
+    setReverse(false);
+  }, [sortKey]);
 
   useEffect(() => {
     setCurrentPage(1);
     if (sortKey) {
       const target = [...tableData];
-      sorter<defData>(target, sortKey);
+      sorter<defData>(target, sortKey, reverse);
       setTableData(target);
     }
-  }, [sortKey]);
+  }, [sortKey, reverse]);
 
   return (
     <div className="data-table">
@@ -50,14 +56,32 @@ function DataTable({ data, search }: Props) {
               <th className="name">이름</th>
               <th className="addr">주소</th>
               <th className="time">운영시간</th>
-              <th className="inven" onClick={() => setSortKey('inventory')}>
+              <th
+                className="inven cc"
+                onClick={() => {
+                  setSortKey('inventory');
+                  setReverse((prev) => !prev);
+                }}
+              >
                 재고량(L)
               </th>
-              <th className="price" onClick={() => setSortKey('price')}>
+              <th
+                className="price cc"
+                onClick={() => {
+                  setSortKey('price');
+                  setReverse((prev) => !prev);
+                }}
+              >
                 가격
               </th>
               <th className="tel">전화번호</th>
-              <th className="date" onClick={() => setSortKey('regDt')}>
+              <th
+                className="date cc"
+                onClick={() => {
+                  setSortKey('regDt');
+                  setReverse((prev) => !prev);
+                }}
+              >
                 수정일자
               </th>
             </tr>
