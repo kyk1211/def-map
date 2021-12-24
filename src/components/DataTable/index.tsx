@@ -1,7 +1,10 @@
+import classNames from 'classnames';
 import React, { useEffect, useMemo, useState } from 'react';
 import { defData } from '../../types/types';
 import sorter from '../../utils/sorter';
 import Pagination from '../Pagination';
+import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
+import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
 import './styles.scss';
 
 interface Props {
@@ -57,32 +60,58 @@ function DataTable({ data, search }: Props) {
               <th className="addr">주소</th>
               <th className="time">운영시간</th>
               <th
-                className="inven cc"
+                className={classNames('inven', 'cc', {
+                  selected: sortKey === 'inventory',
+                  reversed: sortKey === 'inventory' && reverse,
+                })}
                 onClick={() => {
                   setSortKey('inventory');
                   setReverse((prev) => !prev);
                 }}
               >
                 재고량(L)
+                {sortKey === 'inventory' && reverse ? (
+                  <ArrowUpwardIcon fontSize="small" />
+                ) : (
+                  sortKey === 'inventory' && (
+                    <ArrowDownwardIcon fontSize="small" />
+                  )
+                )}
               </th>
               <th
-                className="price cc"
+                className={classNames('price', 'cc', {
+                  selected: sortKey === 'price',
+                  reversed: sortKey === 'price' && reverse,
+                })}
                 onClick={() => {
                   setSortKey('price');
                   setReverse((prev) => !prev);
                 }}
               >
                 가격
+                {sortKey === 'price' && reverse ? (
+                  <ArrowUpwardIcon fontSize="small" />
+                ) : (
+                  sortKey === 'price' && <ArrowDownwardIcon fontSize="small" />
+                )}
               </th>
               <th className="tel">전화번호</th>
               <th
-                className="date cc"
+                className={classNames('date', 'cc', {
+                  selected: sortKey === 'regDt',
+                  reversed: sortKey === 'regDt' && reverse,
+                })}
                 onClick={() => {
                   setSortKey('regDt');
                   setReverse((prev) => !prev);
                 }}
               >
                 수정일자
+                {sortKey === 'regDt' && reverse ? (
+                  <ArrowUpwardIcon fontSize="small" />
+                ) : (
+                  sortKey === 'regDt' && <ArrowDownwardIcon fontSize="small" />
+                )}
               </th>
             </tr>
           </thead>
@@ -93,7 +122,11 @@ function DataTable({ data, search }: Props) {
                 <td>{item.addr || '정보없음'}</td>
                 <td>{item.openTime || '정보없음'}</td>
                 <td>{item.inventory || '정보없음'}</td>
-                <td>{item.price || '정보없음'}</td>
+                <td>
+                  {item.price === 'undefined'
+                    ? '정보없음'
+                    : item.price || '정보없음'}
+                </td>
                 <td>{item.tel || '정보없음'}</td>
                 <td>{item.regDt || '정보없음'}</td>
               </tr>

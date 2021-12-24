@@ -1,5 +1,5 @@
 .data-table {
-  width: 60%;
+  width: 1000px;
   box-sizing: border-box;
   box-shadow: black;
   padding: 5px;
@@ -21,7 +21,6 @@
       th {
         padding: 10px;
         border: 1px solid black;
-        min-width: 150px;
       }
       td {
         padding: 10px;
@@ -31,9 +30,15 @@
       thead {
         th {
           background-color: #249900;
-        }
-        .cc {
-          cursor: pointer;
+          &.cc {
+            cursor: pointer;
+            &.selected {
+              color: blue;
+            }
+            &.reversed {
+              color: purple;
+            }
+          }
         }
       }
 

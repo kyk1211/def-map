@@ -1,6 +1,7 @@
 .MapContainer {
-  width: 40%;
-  height: 550px;
+  width: 45%;
+  min-width: 500px;
+  height: 570px;
   box-sizing: border-box;
 }
 
@@ -13,7 +14,7 @@
   cursor: default;
 
   .head {
-    background-color: #bdbebf;
+    background-color: #4cbafa;
     padding: 5px;
     border-bottom: 1px solid #868687;
     display: flex;
@@ -28,6 +29,7 @@
   }
 
   .body {
+    background-color: aqua;
     padding: 5px;
     text-align: left;
   }
@@ -35,6 +37,6 @@
 
 @media screen and (max-width: 1024px) {
   .MapContainer {
-    width: 100vw;
+    width: 100%;
   }
 }
