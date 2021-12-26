@@ -6,16 +6,15 @@ import redMarker from '../../img/red-marker.png';
 import yellowMarker from '../../img/yellow-marker.png';
 import greenMarker from '../../img/green-marker.png';
 import './styles.scss';
-
-interface Props {
-  data: defData[];
-}
+import { useSelector } from 'react-redux';
+import { selectData } from '../../dataSlice';
 
 const { kakao } = window;
 
-function Map({ data }: Props) {
+function Map() {
   const ref = useRef(null);
   const markers: any[] = [];
+  const defData = useSelector(selectData);
 
   useEffect(() => {
     const options = {
@@ -23,7 +22,7 @@ function Map({ data }: Props) {
       level: 13,
     };
     const map = new kakao.maps.Map(ref.current, options);
-    data.forEach((item) => {
+    defData.forEach((item) => {
       const coords = new kakao.maps.LatLng(item.lat, item.lng);
       const color = item.color.toLowerCase();
       let markerImg;
@@ -109,7 +108,7 @@ function Map({ data }: Props) {
         overlay.setMap(map);
       });
     });
-  }, [data]);
+  }, [defData]);
 
   return <div className="MapContainer" ref={ref}></div>;
 }

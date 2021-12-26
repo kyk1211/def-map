@@ -1,12 +1,11 @@
 import React, { useCallback, useState } from 'react';
 import SearchIcon from '@mui/icons-material/Search';
 import './styles.scss';
+import { useAppDispatch } from '../../hooks/useAppdispatch';
+import { searchKeySet } from '../../dataSlice';
 
-interface Props {
-  setSearch: React.Dispatch<React.SetStateAction<string>>;
-}
-
-function Header({ setSearch }: Props) {
+function Header() {
+  const dispatch = useAppDispatch();
   const [text, setText] = useState('');
   const validateText = useCallback(() => {
     if (!text) {
@@ -21,11 +20,11 @@ function Header({ setSearch }: Props) {
       e.preventDefault();
       validateText();
       if (text.trim().length >= 2) {
-        setSearch(text);
+        dispatch(searchKeySet(text));
         setText('');
       }
     },
-    [text, setSearch, setText, validateText]
+    [text, setText, validateText]
   );
 
   const handleChange = useCallback(
@@ -50,7 +49,7 @@ function Header({ setSearch }: Props) {
         </form>
         <button
           onClick={() => {
-            setSearch('');
+            dispatch(searchKeySet(''));
             setText('');
           }}
         >

@@ -2,9 +2,10 @@ import React, { useEffect, useState } from 'react';
 import './App.scss';
 import axios from 'axios';
 import Map from './components/Map';
-import { defData } from './types/types';
 import DataTable from './components/DataTable';
 import Header from './components/Header';
+import { useAppDispatch } from './hooks/useAppdispatch';
+import { dataSet } from './dataSlice';
 
 declare global {
   interface Window {
@@ -13,9 +14,7 @@ declare global {
 }
 
 function App() {
-  const [defData, setDefData] = useState<defData[]>([]);
-  const [search, setSearch] = useState('');
-  const [searchedData, setSearchedData] = useState<defData[]>([]);
+  const dispatch = useAppDispatch();
   const page = 0;
   const perPage = 800;
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -29,7 +28,7 @@ function App() {
     axios
       .get(url)
       .then((res) => {
-        setDefData(res.data.data);
+        dispatch(dataSet(res.data.data));
         setIsLoading(false);
       })
       .catch((err) => {
@@ -38,26 +37,16 @@ function App() {
       });
   }, [url]);
 
-  useEffect(() => {
-    const data = [];
-    for (const item of defData) {
-      if (item.addr.includes(search)) {
-        data.push(item);
-      }
-    }
-    setSearchedData(data);
-  }, [defData, search]);
-
   return (
     <>
-      <Header setSearch={setSearch} />
+      <Header />
       <div className="content">
         {isLoading ? (
           <div className="loading">Loading...</div>
         ) : (
           <>
-            <Map data={searchedData || defData} />
-            <DataTable data={searchedData || defData} search={search} />
+            <Map />
+            <DataTable />
           </>
         )}
       </div>

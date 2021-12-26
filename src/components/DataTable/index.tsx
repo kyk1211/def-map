@@ -6,16 +6,15 @@ import Pagination from '../Pagination';
 import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
 import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
 import './styles.scss';
+import { useSelector } from 'react-redux';
+import { selectData } from '../../dataSlice';
 
-interface Props {
-  data: defData[];
-  search: string;
-}
-
-function DataTable({ data, search }: Props) {
-  const rowsPerPage = 10;
-  const [tableData, setTableData] = useState([...data]);
+function DataTable() {
+  const defData = useSelector(selectData);
+  const [tableData, setTableData] = useState([...defData]);
   const [currentPage, setCurrentPage] = useState(1);
+  const rowsPerPage = 10;
+
   const [sortKey, setSortKey] = useState<keyof defData | ''>('');
   const [reverse, setReverse] = useState(false);
 
@@ -26,15 +25,11 @@ function DataTable({ data, search }: Props) {
   }, [currentPage, tableData]);
 
   useEffect(() => {
-    setTableData([...data]);
+    setTableData([...defData]);
     setCurrentPage(1);
     setReverse(false);
-  }, [data]);
-
-  useEffect(() => {
     setSortKey('');
-    setReverse(false);
-  }, [search]);
+  }, [defData]);
 
   useEffect(() => {
     setReverse(false);
