@@ -28,7 +28,9 @@ export const selectData = createSelector(
   searchKeySelector,
   (data, key) => {
     if (key) {
-      return data.filter((item) => item.addr.includes(key));
+      return data.filter((item) =>
+        item.addr.toLowerCase().includes(key.toLowerCase())
+      );
     } else {
       return data;
     }

@@ -10,7 +10,6 @@
   }
 
   .table-container {
-    overflow-x: scroll;
     height: 82%;
 
     table {
@@ -39,7 +38,7 @@
               color: blue;
             }
             &.reversed {
-              color: purple;
+              color: red;
             }
             & > div {
               display: flex;
