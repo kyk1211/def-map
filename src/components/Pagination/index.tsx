@@ -33,8 +33,24 @@ function Pagination({
     onPageChange(currentPage + 1);
   };
 
+  const onDoubleNext = () => {
+    if (currentPage >= Math.ceil(dataCount / rowsPerPage) - 10) {
+      onPageChange(Math.ceil(dataCount / rowsPerPage));
+    } else {
+      onPageChange(currentPage + 10);
+    }
+  };
+
   const onPrev = () => {
     onPageChange(currentPage - 1);
+  };
+
+  const onDoublePrev = () => {
+    if (currentPage <= 10) {
+      onPageChange(1);
+    } else {
+      onPageChange(currentPage - 10);
+    }
   };
 
   let lastPage = paginationRange[paginationRange.length - 1];
@@ -42,6 +58,15 @@ function Pagination({
     <ul
       className={classnames('pagination-container', { [className]: className })}
     >
+      <li
+        className={classnames('pagination-item', {
+          disabled: currentPage === 1,
+        })}
+        onClick={onDoublePrev}
+      >
+        <div className="arrow left" />
+        <div className="arrow left" />
+      </li>
       <li
         className={classnames('pagination-item', {
           disabled: currentPage === 1,
@@ -72,6 +97,15 @@ function Pagination({
         })}
         onClick={onNext}
       >
+        <div className="arrow right" />
+      </li>
+      <li
+        className={classnames('pagination-item', {
+          disabled: currentPage === lastPage,
+        })}
+        onClick={onDoubleNext}
+      >
+        <div className="arrow right" />
         <div className="arrow right" />
       </li>
     </ul>
