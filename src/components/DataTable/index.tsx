@@ -43,7 +43,6 @@ function DataTable() {
       setTableData(target);
     }
   }, [sortKey, reverse]);
-
   return (
     <div className="data-table">
       <span>요소수 재고 정보</span>

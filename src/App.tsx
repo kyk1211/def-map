@@ -17,7 +17,7 @@ declare global {
 function App() {
   const dispatch = useAppDispatch();
   const page = 0;
-  const perPage = 800;
+  const perPage = 100000;
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const apiKey = process.env.REACT_APP_PUBINFO_API_KEY;
   const apiAddr = 'https://api.odcloud.kr/api/uws/v1/inventory';
