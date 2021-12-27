@@ -22,6 +22,8 @@ function Map() {
       level: 13,
     };
     const map = new kakao.maps.Map(ref.current, options);
+    let zoomControl = new kakao.maps.ZoomControl();
+    map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
     defData.forEach((item) => {
       const coords = new kakao.maps.LatLng(item.lat, item.lng);
       const color = item.color.toLowerCase();
