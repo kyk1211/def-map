@@ -6,6 +6,7 @@ import DataTable from './components/DataTable';
 import Header from './components/Header';
 import { useAppDispatch } from './hooks/useAppdispatch';
 import { dataSet } from './dataSlice';
+import ReactLoading from 'react-loading';
 
 declare global {
   interface Window {
@@ -42,7 +43,9 @@ function App() {
       <Header />
       <div className="content">
         {isLoading ? (
-          <div className="loading">Loading...</div>
+          <div className="loading">
+            <ReactLoading type="spin" color="blue" />
+          </div>
         ) : (
           <>
             <Map />

@@ -4,19 +4,19 @@
   box-shadow: black;
   padding: 5px;
 
-  span {
+  & > span {
     font-size: large;
     font-weight: bolder;
   }
 
   .table-container {
-    table-layout: fixed;
     overflow-x: scroll;
 
     table {
       white-space: nowrap;
       border-collapse: collapse;
       border: 3px solid black;
+      table-layout: fixed;
 
       th {
         padding: 10px;
@@ -29,6 +29,7 @@
 
       thead {
         th {
+          max-width: 150px;
           background-color: #249900;
           &.cc {
             cursor: pointer;
@@ -37,6 +38,11 @@
             }
             &.reversed {
               color: purple;
+            }
+            & > div {
+              display: flex;
+              justify-content: center;
+              align-items: center;
             }
           }
         }

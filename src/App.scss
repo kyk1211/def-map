@@ -4,9 +4,11 @@
   align-items: center;
   justify-content: center;
   text-align: center;
-  .loading {
-    font-size: 100px;
-    font-weight: bolder;
+  & > .loading {
+    position: relative;
+    display: flex;
+    height: 90vh;
+    align-items: center;
   }
 }
 

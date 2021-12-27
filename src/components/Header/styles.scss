@@ -23,7 +23,7 @@
     color: white;
     border: 1px solid white;
 
-    form {
+    & > form {
       display: flex;
       justify-content: center;
 

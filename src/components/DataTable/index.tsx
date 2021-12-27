@@ -55,7 +55,7 @@ function DataTable() {
               <th className="addr">주소</th>
               <th className="time">운영시간</th>
               <th
-                className={classNames('inven', 'cc', {
+                className={classNames('cc', {
                   selected: sortKey === 'inventory',
                   reversed: sortKey === 'inventory' && reverse,
                 })}
@@ -64,17 +64,19 @@ function DataTable() {
                   setReverse((prev) => !prev);
                 }}
               >
-                재고량(L)
-                {sortKey === 'inventory' && reverse ? (
-                  <ArrowUpwardIcon fontSize="small" />
-                ) : (
-                  sortKey === 'inventory' && (
-                    <ArrowDownwardIcon fontSize="small" />
-                  )
-                )}
+                <div>
+                  재고량(L)
+                  {sortKey === 'inventory' && reverse ? (
+                    <ArrowUpwardIcon fontSize="small" />
+                  ) : (
+                    sortKey === 'inventory' && (
+                      <ArrowDownwardIcon fontSize="small" />
+                    )
+                  )}
+                </div>
               </th>
               <th
-                className={classNames('price', 'cc', {
+                className={classNames('cc', {
                   selected: sortKey === 'price',
                   reversed: sortKey === 'price' && reverse,
                 })}
@@ -83,16 +85,20 @@ function DataTable() {
                   setReverse((prev) => !prev);
                 }}
               >
-                가격
-                {sortKey === 'price' && reverse ? (
-                  <ArrowUpwardIcon fontSize="small" />
-                ) : (
-                  sortKey === 'price' && <ArrowDownwardIcon fontSize="small" />
-                )}
+                <div>
+                  가격
+                  {sortKey === 'price' && reverse ? (
+                    <ArrowUpwardIcon fontSize="small" />
+                  ) : (
+                    sortKey === 'price' && (
+                      <ArrowDownwardIcon fontSize="small" />
+                    )
+                  )}
+                </div>
               </th>
               <th className="tel">전화번호</th>
               <th
-                className={classNames('date', 'cc', {
+                className={classNames('cc', {
                   selected: sortKey === 'regDt',
                   reversed: sortKey === 'regDt' && reverse,
                 })}
@@ -101,12 +107,16 @@ function DataTable() {
                   setReverse((prev) => !prev);
                 }}
               >
-                수정일자
-                {sortKey === 'regDt' && reverse ? (
-                  <ArrowUpwardIcon fontSize="small" />
-                ) : (
-                  sortKey === 'regDt' && <ArrowDownwardIcon fontSize="small" />
-                )}
+                <div>
+                  수정일자
+                  {sortKey === 'regDt' && reverse ? (
+                    <ArrowUpwardIcon fontSize="small" />
+                  ) : (
+                    sortKey === 'regDt' && (
+                      <ArrowDownwardIcon fontSize="small" />
+                    )
+                  )}
+                </div>
               </th>
             </tr>
           </thead>
