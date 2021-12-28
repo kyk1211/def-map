@@ -30,13 +30,18 @@ function App() {
       .get(url)
       .then((res) => {
         dispatch(dataSet(res.data.data));
-        setIsLoading(false);
       })
       .catch((err) => {
         console.log(err);
-        setIsLoading(false);
       });
   }, [url]);
+
+  useEffect(() => {
+    let timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 1000);
+    return () => clearTimeout(timer);
+  }, []);
 
   return (
     <>
