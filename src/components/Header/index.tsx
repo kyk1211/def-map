@@ -3,6 +3,7 @@ import SearchIcon from '@mui/icons-material/Search';
 import './styles.scss';
 import { useAppDispatch } from '../../hooks/useAppdispatch';
 import { searchKeySet } from '../../dataSlice';
+import GitHubIcon from '@mui/icons-material/GitHub';
 
 function Header() {
   const dispatch = useAppDispatch();
@@ -24,7 +25,7 @@ function Header() {
         setText('');
       }
     },
-    [text, setText, validateText]
+    [text, setText, validateText, dispatch]
   );
 
   const handleChange = useCallback(
@@ -36,13 +37,22 @@ function Header() {
 
   return (
     <div className="header">
-      <div className="logo" onClick={() => window.location.reload()}>
-        <span>요소수 정보 서비스</span>
+      <div className="nav-left">
+        <div className="logo" onClick={() => window.location.reload()}>
+          <span>요소수 정보 서비스</span>
+        </div>
+        <div
+          className="source"
+          onClick={() =>
+            window.open('https://github.com/kyk1211/def-map', '_blank')
+          }
+        >
+          <GitHubIcon fontSize="large" />
+        </div>
       </div>
       <div className="search-container">
         <form onSubmit={handleSubmit}>
-          <span>주소 검색</span>
-          <input onChange={handleChange} value={text} placeholder="검색" />
+          <input onChange={handleChange} value={text} placeholder="주소 검색" />
           <button type="submit">
             <SearchIcon />
           </button>

@@ -7,6 +7,7 @@ import Header from './components/Header';
 import { useAppDispatch } from './hooks/useAppdispatch';
 import { dataSet } from './dataSlice';
 import ReactLoading from 'react-loading';
+import { defData } from './types/types';
 
 declare global {
   interface Window {
@@ -30,11 +31,14 @@ function App() {
       .get(url)
       .then((res) => {
         dispatch(dataSet(res.data.data));
+        console.log(
+          res.data.data.filter((item: defData) => item.name === '성수주유소')
+        );
       })
       .catch((err) => {
         console.log(err);
       });
-  }, [url]);
+  }, [url, dispatch]);
 
   useEffect(() => {
     let timer = setTimeout(() => {

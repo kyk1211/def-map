@@ -44,6 +44,7 @@ function DataTable() {
       setTableData(target);
     }
   }, [sortKey, reverse]);
+
   return (
     <div className="data-table">
       <span>요소수 재고 정보</span>
@@ -131,7 +132,11 @@ function DataTable() {
                   <td>
                     {item.price === 'undefined'
                       ? '정보없음'
-                      : item.price || '정보없음'}
+                      : item.price === '0'
+                      ? '정보없음'
+                      : item.price
+                      ? item.price
+                      : '정보없음'}
                   </td>
                   <td>{item.tel || '정보없음'}</td>
                   <td>{item.regDt || '정보없음'}</td>
