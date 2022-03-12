@@ -1,7 +1,7 @@
 {
   "name": "def-project",
   "version": "0.1.0",
-  "homepage": "https://kyk1211.github.io/def-map",
+  "homepage": "https://kyk1211.github.io/",
   "private": true,
   "dependencies": {
     "@emotion/react": "^11.7.0",
