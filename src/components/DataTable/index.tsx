@@ -43,6 +43,7 @@ function DataTable() {
       sorter<defData>(target, sortKey, reverse);
       setTableData(target);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [sortKey, reverse]);
 
   return (
@@ -71,9 +72,7 @@ function DataTable() {
                     {sortKey === 'inventory' && reverse ? (
                       <ArrowUpwardIcon fontSize="small" />
                     ) : (
-                      sortKey === 'inventory' && (
-                        <ArrowDownwardIcon fontSize="small" />
-                      )
+                      sortKey === 'inventory' && <ArrowDownwardIcon fontSize="small" />
                     )}
                   </div>
                 </th>
@@ -92,9 +91,7 @@ function DataTable() {
                     {sortKey === 'price' && reverse ? (
                       <ArrowUpwardIcon fontSize="small" />
                     ) : (
-                      sortKey === 'price' && (
-                        <ArrowDownwardIcon fontSize="small" />
-                      )
+                      sortKey === 'price' && <ArrowDownwardIcon fontSize="small" />
                     )}
                   </div>
                 </th>
@@ -114,9 +111,7 @@ function DataTable() {
                     {sortKey === 'regDt' && reverse ? (
                       <ArrowUpwardIcon fontSize="small" />
                     ) : (
-                      sortKey === 'regDt' && (
-                        <ArrowDownwardIcon fontSize="small" />
-                      )
+                      sortKey === 'regDt' && <ArrowDownwardIcon fontSize="small" />
                     )}
                   </div>
                 </th>

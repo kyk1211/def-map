@@ -12,14 +12,7 @@ interface Props {
   className: string;
 }
 
-function Pagination({
-  dataCount,
-  rowsPerPage,
-  currentPage,
-  siblingCount = 2,
-  onPageChange,
-  className,
-}: Props) {
+function Pagination({ dataCount, rowsPerPage, currentPage, siblingCount = 2, onPageChange, className }: Props) {
   const paginationRange = usePagination({
     currentPage,
     dataCount,
@@ -55,9 +48,7 @@ function Pagination({
 
   let lastPage = paginationRange[paginationRange.length - 1];
   return (
-    <ul
-      className={classnames('pagination-container', { [className]: className })}
-    >
+    <ul className={classnames('pagination-container', { [className]: className })}>
       <li
         className={classnames('pagination-item', {
           disabled: currentPage === 1,
