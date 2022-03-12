@@ -1,22 +1,22 @@
 {
   "files": {
-    "main.css": "/def-map/static/css/main.96845500.chunk.css",
-    "main.js": "/def-map/static/js/main.edb74010.chunk.js",
-    "main.js.map": "/def-map/static/js/main.edb74010.chunk.js.map",
-    "runtime-main.js": "/def-map/static/js/runtime-main.736a6e18.js",
-    "runtime-main.js.map": "/def-map/static/js/runtime-main.736a6e18.js.map",
-    "static/js/2.f8255489.chunk.js": "/def-map/static/js/2.f8255489.chunk.js",
-    "static/js/2.f8255489.chunk.js.map": "/def-map/static/js/2.f8255489.chunk.js.map",
-    "index.html": "/def-map/index.html",
-    "static/css/main.96845500.chunk.css.map": "/def-map/static/css/main.96845500.chunk.css.map",
-    "static/js/2.f8255489.chunk.js.LICENSE.txt": "/def-map/static/js/2.f8255489.chunk.js.LICENSE.txt",
-    "static/media/gray-marker.92f9767f.png": "/def-map/static/media/gray-marker.92f9767f.png",
-    "static/media/green-marker.3fea8bad.png": "/def-map/static/media/green-marker.3fea8bad.png",
-    "static/media/red-marker.5ba94e4a.png": "/def-map/static/media/red-marker.5ba94e4a.png",
-    "static/media/yellow-marker.ac5e6715.png": "/def-map/static/media/yellow-marker.ac5e6715.png"
+    "main.css": "/static/css/main.96845500.chunk.css",
+    "main.js": "/static/js/main.edb74010.chunk.js",
+    "main.js.map": "/static/js/main.edb74010.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.5f89a361.js",
+    "runtime-main.js.map": "/static/js/runtime-main.5f89a361.js.map",
+    "static/js/2.f8255489.chunk.js": "/static/js/2.f8255489.chunk.js",
+    "static/js/2.f8255489.chunk.js.map": "/static/js/2.f8255489.chunk.js.map",
+    "index.html": "/index.html",
+    "static/css/main.96845500.chunk.css.map": "/static/css/main.96845500.chunk.css.map",
+    "static/js/2.f8255489.chunk.js.LICENSE.txt": "/static/js/2.f8255489.chunk.js.LICENSE.txt",
+    "static/media/gray-marker.92f9767f.png": "/static/media/gray-marker.92f9767f.png",
+    "static/media/green-marker.3fea8bad.png": "/static/media/green-marker.3fea8bad.png",
+    "static/media/red-marker.5ba94e4a.png": "/static/media/red-marker.5ba94e4a.png",
+    "static/media/yellow-marker.ac5e6715.png": "/static/media/yellow-marker.ac5e6715.png"
   },
   "entrypoints": [
-    "static/js/runtime-main.736a6e18.js",
+    "static/js/runtime-main.5f89a361.js",
     "static/js/2.f8255489.chunk.js",
     "static/css/main.96845500.chunk.css",
     "static/js/main.edb74010.chunk.js"
