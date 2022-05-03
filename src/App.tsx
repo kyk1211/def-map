@@ -31,9 +31,6 @@ function App() {
       .get(url)
       .then((res) => {
         dispatch(dataSet(res.data.data));
-        console.log(
-          res.data.data.filter((item: defData) => item.name === '성수주유소')
-        );
       })
       .catch((err) => {
         console.log(err);

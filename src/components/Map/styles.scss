@@ -24,6 +24,12 @@
     }
     button {
       cursor: pointer;
+      background-color: white;
+      border: none;
+      border-radius: 5px;
+      &:hover {
+        background-color: lightcyan;
+      }
     }
   }
 
