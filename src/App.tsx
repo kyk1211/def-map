@@ -7,7 +7,6 @@ import Header from './components/Header';
 import { useAppDispatch } from './hooks/useAppdispatch';
 import { dataSet } from './dataSlice';
 import ReactLoading from 'react-loading';
-import { defData } from './types/types';
 
 declare global {
   interface Window {
@@ -31,18 +30,12 @@ function App() {
       .get(url)
       .then((res) => {
         dispatch(dataSet(res.data.data));
+        setIsLoading(false);
       })
       .catch((err) => {
         console.log(err);
       });
   }, [url, dispatch]);
-
-  useEffect(() => {
-    let timer = setTimeout(() => {
-      setIsLoading(false);
-    }, 1000);
-    return () => clearTimeout(timer);
-  }, []);
 
   return (
     <>

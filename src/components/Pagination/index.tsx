@@ -66,12 +66,17 @@ function Pagination({ dataCount, rowsPerPage, currentPage, siblingCount = 2, onP
       >
         <div className="arrow left" />
       </li>
-      {paginationRange.map((pageNum) => {
+      {paginationRange.map((pageNum, index) => {
         if (pageNum === DOTS) {
-          return <li className="pagination-item dots">&#8230;</li>;
-        } else if (typeof pageNum === 'number') {
+          return (
+            <li key={index} className="pagination-item dots">
+              &#8230;
+            </li>
+          );
+        } else {
           return (
             <li
+              key={index}
               className={classnames('pagination-item', {
                 selected: pageNum === currentPage,
               })}

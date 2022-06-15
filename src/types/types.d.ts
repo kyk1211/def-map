@@ -1,4 +1,4 @@
-export interface defData {
+interface defData {
   addr: string;
   code: string;
   inventory: string;

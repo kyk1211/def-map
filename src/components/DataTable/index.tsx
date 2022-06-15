@@ -1,6 +1,5 @@
 import classNames from 'classnames';
 import React, { useEffect, useMemo, useState } from 'react';
-import { defData } from '../../types/types';
 import sorter from '../../utils/sorter';
 import Pagination from '../Pagination';
 import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
@@ -9,8 +8,11 @@ import './styles.scss';
 import { useSelector } from 'react-redux';
 import { selectData } from '../../dataSlice';
 import Scrollbars from 'react-custom-scrollbars-2';
+import { RootState } from '../../store';
 
 function DataTable() {
+  const map = useSelector((state: RootState) => state.map.map);
+  const markers = useSelector((state: RootState) => state.map.markers);
   const defData = useSelector(selectData);
   const [tableData, setTableData] = useState([...defData]);
   const [currentPage, setCurrentPage] = useState(1);
@@ -120,7 +122,20 @@ function DataTable() {
             <tbody>
               {currentTableData.map((item) => (
                 <tr key={item.code}>
-                  <th>{item.name || '정보없음'}</th>
+                  <th
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      for (const marker of markers) {
+                        marker[1].setMap(null);
+                        if (marker[2].code === item.code) {
+                          marker[1].setMap(map);
+                          map.setCenter(marker[1].getPosition());
+                        }
+                      }
+                    }}
+                  >
+                    {item.name || '정보없음'}
+                  </th>
                   <td>{item.addr || '정보없음'}</td>
                   <td>{item.openTime || '정보없음'}</td>
                   <td>{item.inventory || '정보없음'}</td>

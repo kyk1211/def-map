@@ -32,7 +32,6 @@
           max-width: 150px;
           background-color: #249900;
           &:first-child {
-            position: sticky;
             left: 0;
           }
           &.cc {
@@ -56,8 +55,6 @@
         tr {
           th {
             text-align: left;
-            position: sticky;
-            left: 0;
             background-color: white;
             border: 1px solid black;
           }
